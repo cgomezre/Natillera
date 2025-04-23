@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Web;
 
-namespace Examen3.Clases
+namespace Natillera.Clases
 {
     public class TokenValidationHandler : DelegatingHandler
     {

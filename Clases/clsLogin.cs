@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-using Examen3.Models;
+using Natillera.Models;
 
-namespace Examen3.Clases
+namespace Natillera.Clases
 {
     public class clsLogin
     {
@@ -14,7 +14,7 @@ namespace Examen3.Clases
             loginRespuesta = new LoginRespuesta();
         }
 
-        public NATILLERAEntities dbNatilla = new NATILLERAEntities();
+        public Examen_3_EventosEntities DBexamen_3_Eventos = new Examen_3_EventosEntities();
         public Login login { get; set; }
         public LoginRespuesta loginRespuesta { get; set; }
 
@@ -22,7 +22,7 @@ namespace Examen3.Clases
         {
             try
             {
-                Administrador administrador = dbNatilla.Administradors
+                Administrador administrador = DBexamen_3_Eventos.Administradors
                     .FirstOrDefault(u => u.Usuario == login.Usuario);
                 if (administrador == null)
                 {
@@ -68,7 +68,7 @@ namespace Examen3.Clases
             if (ValidarUsuario() && ValidarClave())
             {
                 string token = TokenGenerator.GenerateTokenJwt(login.Usuario);
-                return from A in dbNatilla.Administradors
+                return from A in DBexamen_3_Eventos.Administradors
                        where A.Usuario == login.Usuario && A.Clave == login.Clave
                        select new LoginRespuesta
                        {

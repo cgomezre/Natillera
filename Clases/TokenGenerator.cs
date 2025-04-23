@@ -11,7 +11,7 @@ using System.Threading;
 using System.Web;
 using System.Security.Claims;
 
-namespace Examen3.Clases
+namespace Natillera.Clases
 {
     public class TokenGenerator
     {

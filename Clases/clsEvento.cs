@@ -6,31 +6,31 @@ using System.Security.Policy;
 using System.Web;
 using System.Web.WebPages.Instrumentation;
 
-using Examen3.Models;
+using Natillera.Models;
 
-namespace Examen3.Clases
+namespace Natillera.Clases
 {
     public class clsEvento
     {
-        private NATILLERAEntities bdNatilla = new NATILLERAEntities();
+        private Examen_3_EventosEntities DBExamen3_eventos = new Examen_3_EventosEntities();
 
         public Evento evento { get; set; }
 
         public List<Evento> ListarEventos()
         {
-            return bdNatilla.Eventos
+            return DBExamen3_eventos.Eventos
                     .OrderBy(p => p.NombreEvento)
                     .ToList();
         }
 
         public Evento ConsultarxID(int id)
         {
-            return bdNatilla.Eventos.FirstOrDefault(p => p.idEventos == id);
+            return DBExamen3_eventos.Eventos.FirstOrDefault(p => p.idEventos == id);
         }
 
         public List<Evento> Consultar_EventosxTipo(string tipo)
         {
-            return bdNatilla.Eventos
+            return DBExamen3_eventos.Eventos
                 .Where(p => p.TipoEvento == tipo)
                 .OrderBy(p => p.NombreEvento)
                 .ToList();
@@ -38,7 +38,7 @@ namespace Examen3.Clases
 
         public List<Evento> Consultar_EventosxFecha(DateTime fecha)
         {
-            return bdNatilla.Eventos
+            return DBExamen3_eventos.Eventos
                 .Where(p => p.FechaEvento == fecha)
                 .OrderBy(p => p.NombreEvento)
                 .ToList();
@@ -46,7 +46,7 @@ namespace Examen3.Clases
 
         public List<Evento> Consultar_EventosxNombre(string nombre)
         {
-            return bdNatilla.Eventos
+            return DBExamen3_eventos.Eventos
                 .Where(p => p.NombreEvento == nombre)
                 .OrderBy(p => p.NombreEvento)
                 .ToList();
@@ -56,8 +56,8 @@ namespace Examen3.Clases
         {
             try
             {
-                bdNatilla.Eventos.Add(evento);
-                bdNatilla.SaveChanges();
+                DBExamen3_eventos.Eventos.Add(evento);
+                DBExamen3_eventos.SaveChanges();
                 return "Se agrego exitosamente el evento con nombre: " + evento.NombreEvento + " y id: " + evento.idEventos;
             }
             catch (Exception ex)
@@ -75,8 +75,8 @@ namespace Examen3.Clases
                 {
                     return "El evento no existe";
                 }
-                bdNatilla.Eventos.AddOrUpdate(evento);
-                bdNatilla.SaveChanges();
+                DBExamen3_eventos.Eventos.AddOrUpdate(evento);
+                DBExamen3_eventos.SaveChanges();
                 return "Se actualizo exitosamente el evento con ID: " + evento.idEventos;
             }
             catch (Exception)
@@ -94,8 +94,8 @@ namespace Examen3.Clases
                 {
                     return "El evento no existe";
                 }
-                bdNatilla.Eventos.Remove(eve);
-                bdNatilla.SaveChanges();
+                DBExamen3_eventos.Eventos.Remove(eve);
+                DBExamen3_eventos.SaveChanges();
                 return "Se eliminó exitosamente el evento";
             }
             catch (Exception)

@@ -11,7 +11,8 @@ namespace Natillera.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using Newtonsoft.Json;
+
     public partial class Evento
     {
         public int idEventos { get; set; }
@@ -22,7 +23,8 @@ namespace Natillera.Models
         public System.DateTime FechaEvento { get; set; }
         public string Sede { get; set; }
         public string ActiviadesPlaneadas { get; set; }
-    
+        [JsonIgnore]
+
         public virtual Administrador Administrador { get; set; }
     }
 }
